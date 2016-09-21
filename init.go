@@ -33,7 +33,7 @@ InitDB to connection to database
 */
 func InitDB() {
 	uri := revel.Config.StringDefault("database.uri", "mongodb://localhost:27017")
-	name := revel.Config.StringDefault("database.name", "workype")
+	name := revel.Config.StringDefault("database.name", "test")
 	if err := database.Init(uri, name); err != nil {
 		revel.INFO.Println("DB Error", err)
 	}
@@ -48,7 +48,7 @@ func InitDB() {
 	c.Response.Out.Header().Add("X-Content-Type-Options", "nosniff")
 
 	if c.Request.Header.Get("Access-Control-Request-Method") != "" && ("OPTIONS" == c.Request.Method) {
-		c.Response.Out.Header().Set("Access-Control-Allow-Origin", "http://52.11.130.33")
+		c.Response.Out.Header().Set("Access-Control-Allow-Origin", "http://127.0.0.1")
 		c.Response.Out.Header().Set("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE")
 		c.Response.Out.Header().Set("Access-Control-Allow-Headers",c.Request.Header.Get("Access-Control-Request-Headers"))
 		c.Response.Out.Header().Set("Access-Control-Allow-Credentials", "true")
